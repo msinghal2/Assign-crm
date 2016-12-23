@@ -1,0 +1,17 @@
+{% extends 'assign/base.html' %}
+
+{% block body %}
+
+    <h3>{{ object.dbuilding }} - floor {{ object.dfloor }} - wing {{ object.dwing }}</h3>
+
+    <form action="{% url 'assign:delegdelete' object.id %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="deleg_id" value="{{ object.id }}"/>
+        <button type="submit" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-trash"></span>
+        </button>
+     </form>
+<!--    <h4><a href="{% url 'assign:assigndelete' object.id %}">DELETE</a></h4>    -->
+    <h4><a href="{% url 'assign:delegupdate' object.id %}">EDIT</a> </h4>
+
+{% endblock %}

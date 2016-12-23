@@ -1,0 +1,35 @@
+{% extends 'assign/base.html' %}
+
+{% block body %}
+    <center>
+    <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" height="300" width="275">
+    <h1>{{ user.socialaccount_set.all.0.extra_data.name }}</h1>
+    <!--    <img src="{{ object.photo }}" height="300" width="275">  -->
+    <!--    <h2>{{ object.employeeName }}</h2>      -->
+    <h4>{{ object.email }}</h4>
+
+
+    <h3>You are assigned to :</h3>
+
+    {% if object.assignment_set.all %}
+        <ul>
+            {% for assg in object.assignment_set.all %}
+            <li>{{ assg.abuilding }} - floor {{ assg.afloor }} - room {{ assg.aroom }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h4>You have no room assigned</h4>
+    {% endif %}
+
+    <h3>You have delegation over :</h3>
+    {% if object.delegation_set.all %}
+        <ul>
+            {% for delg in object.delegation_set.all %}
+            <li>building {{ delg.dbuilding }} - floor {{ delg.dfloor }} - wing {{ delg.dwing }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h4>You have no delegation assigned</h4>
+    {% endif %}
+    </center>
+{% endblock %}

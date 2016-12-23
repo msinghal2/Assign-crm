@@ -1,0 +1,7 @@
+To run, open shell and
+
+1. Install Django "pip install Django"
+1. Install allauth package "pip install django-allauth"
+2. Go to the crm folder "\crm>"
+3. Run local django server "\crm> python manage.py runserver"
+4. Open browser and go to "localhost:8000/accounts/login"

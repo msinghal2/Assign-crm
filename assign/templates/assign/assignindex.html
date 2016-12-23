@@ -1,0 +1,18 @@
+{% extends 'assign/base.html' %}
+
+{% block body %}
+
+    {% if assign_list %}
+        <!--    <h3>All employees</h3>      -->
+        <ul>
+            {% for data in assign_list %}
+                {% if user.socialaccount_set.all.0.extra_data.name in data.assignor %}
+                    <li><a href="{% url 'assign:assigndetail' data.id %}">{{ data.assignee }} - {{ data.abuilding }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+    {% else %}
+        <h3>There is no assignment list</h3>
+    {% endif %}
+{% endblock %}

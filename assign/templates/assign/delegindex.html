@@ -1,0 +1,18 @@
+{% extends 'assign/base.html' %}
+
+{% block body %}
+
+    {% if deleg_list %}
+        <!--    <h3>All employees</h3>      -->
+        <ul>
+            {% for data in deleg_list %}
+                {% if user.socialaccount_set.all.0.extra_data.name in data.delegator %}
+                    <li><a href="{% url 'assign:delegdetail' data.id %}">{{ data.delegated }} - {{ data.dbuilding }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+    {% else %}
+        <h3>There is no delegation list</h3>
+    {% endif %}
+{% endblock %}
